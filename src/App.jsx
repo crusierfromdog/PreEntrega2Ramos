@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { useState } from "react";
+import Navbar from "./components/Navbar";
 
-function App() {
-  const [count, setCount] = useState(0)
+const initialState = {
+  catalog: [
+    {
+      name: "Bebidas",
+      id: "1",
+      products: [
+        { id: "1", name: "Coca Cola", price: 1500, stock: 10, imageUrl: "" },
+        { id: "2", name: "Fanta", price: 1400, stock: 10, imageUrl: "" },
+        { id: "3", name: "Sprite", price: 1100, stock: 4, imageUrl: "" },
+      ],
+    },
+    {
+      name: "Jugos",
+      id: "2",
+      products: [
+        {
+          id: "4",
+          name: "Jugo de Naranja",
+          price: 1000,
+          stock: 6,
+          imageUrl: "",
+        },
+        { id: "5", name: "Jugo de Piña", price: 1100, stock: 8, imageUrl: "" },
+        {
+          id: "6",
+          name: "Jugo de Durazno",
+          price: 1300,
+          stock: 4,
+          imageUrl: "",
+        },
+      ],
+    },
+  ],
+  cart: {
+    products: [],
+    amount: 0,
+  },
+};
+
+const App = () => {
+  const [appState, setAppState] = useState(initialState);
+  const categories = appState.catalog.map((category) => category.name);
+  const cart = appState.cart;
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar categories={categories} cart={cart} />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
