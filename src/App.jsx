@@ -82,8 +82,6 @@ const router = createBrowserRouter([
 
 const App = () => {
   const [appState, setAppState] = useState(initialState);
-  /*const categories = appState.catalog.map((category) => category.name);
-  const cart = appState.cart;   */
 
   return (
     <AppStateContext.Provider value={{ appState, setAppState }}>
